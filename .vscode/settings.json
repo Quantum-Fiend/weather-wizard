@@ -1,0 +1,12 @@
+{
+  "editor.smoothScrolling": true,
+  "workbench.list.smoothScrolling": true,
+  "terminal.integrated.smoothScrolling": true,
+  "background.smoothImageRendering": true,
+  "editor.cursorBlinking": "expand",
+  "editor.experimentalGpuAcceleration": "off",
+  "terminal.integrated.gpuAcceleration": "on",
+  "git-graph.dialog.addTag.pushToRemote": true,
+  "terminal.integrated.enableImages": true,
+  "workbench.preferredHighContrastLightColorTheme": "Aura Dark"
+}

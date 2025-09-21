@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body, html {
+  /* Replace @apply with equivalent CSS properties */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom, #0b0c1a, #1d1f33, #0b0c1a);
+  height: 100%;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  color: white;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Twinkling stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.9; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Moon drifting */
+@keyframes moon-move {
+  0% { transform: translateX(-20%) translateY(5%); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translateX(50%) translateY(0%); }
+  90% { opacity: 1; }
+  100% { transform: translateX(120%) translateY(5%); opacity: 0; }
 }
+
+/* Cloud drift layers */
+@keyframes cloud-move-slow {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+@keyframes cloud-move-fast {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
