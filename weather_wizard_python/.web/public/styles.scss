@@ -1,0 +1,244 @@
+// Variables
+$bg-color: #0b0c1a;
+$text-color: #ffffff;
+$primary-color: #4f46e5; // Indigo 600
+$primary-hover: #4338ca; // Indigo 700
+$secondary-color: #db2777; // Pink 600
+$secondary-hover: #be185d; // Pink 700
+$card-bg: rgba(255, 255, 255, 0.1);
+$card-border: rgba(255, 255, 255, 0.2);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin card-style {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+// Global Styles
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.weather-container {
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2rem 1rem; // Reduced padding for mobile
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+}
+
+.app-title {
+  font-size: 2.25rem; // Smaller on mobile
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 3.5rem;
+  }
+}
+
+.search-bar {
+  @include flex-center;
+  gap: 0.75rem;
+  flex-direction: column; // Stack on mobile
+  width: 100%;
+
+  @media (min-width: 640px) {
+    flex-direction: row; // Row on larger screens
+  }
+
+  input {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $primary-color;
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    @media (min-width: 640px) {
+      width: 400px;
+    }
+  }
+
+  button {
+    width: 100%; // Full width on mobile
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    color: white;
+    font-size: 1rem;
+
+    @media (min-width: 640px) {
+      width: auto; // Auto width on larger screens
+    }
+
+    &.search-btn {
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
+    }
+
+    &.unit-btn {
+      background-color: $secondary-color;
+
+      &:hover {
+        background-color: $secondary-hover;
+      }
+    }
+  }
+}
+
+.weather-card {
+  @include card-style;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .temp-display {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 1rem 0;
+
+    @media (min-width: 768px) {
+      font-size: 5rem;
+    }
+  }
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // 2 cols on mobile
+  gap: 0.75rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .forecast-card {
+    @include card-style;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .day {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .icon {
+      width: 3rem;
+      height: 3rem;
+      margin: 0.5rem 0;
+    }
+
+    .temp {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    text-align: left;
+  }
+}
+
+.favorites-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+
+  .fav-chip {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
